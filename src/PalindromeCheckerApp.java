@@ -8,24 +8,44 @@ public class PalindromeCheckerApp {
         }
 
         if (word.equals(rev_word)){
-            System.out.println("Palindrome");
             return true;
         }
 
         else{
-            System.out.println("not");
             return false;
         }
     }
 
+    static boolean palindromeArr(String word){
+
+        int start = 0;
+        int end = word.length() - 1;
+
+        while(end >= start){
+            if(word.charAt(start) != word.charAt(end)){
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+
     public static void main(String[] args){
 
-        double version = 1.0;
+        double version = 2.0;
         System.out.println("Welcome to the Palindrome Checker Management System");
         System.out.println("Version : " + version);
         System.out.println("System initialized successfully.");
-        palindrome("helo");
+        boolean status = palindromeArr("madam");
+        if (status){
+            System.out.println("Palindrome");
 
+        }
+        else{
+            System.out.println("not");
+
+        }
     }
 
 }
