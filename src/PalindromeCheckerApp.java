@@ -1,3 +1,6 @@
+import java.util.Stack;
+
+
 public class PalindromeCheckerApp {
 
     static boolean palindrome(String word){
@@ -27,6 +30,22 @@ public class PalindromeCheckerApp {
             }
             start++;
             end--;
+        }
+        return true;
+    }
+
+    static boolean palindromeStack(String word){
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < word.length(); i++) {
+            stack.push(word.charAt(i));
+        }
+
+
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) != stack.pop()) {
+                return false;
+            }
         }
         return true;
     }
