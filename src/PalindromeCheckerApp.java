@@ -86,13 +86,28 @@ public class PalindromeCheckerApp {
         return true;
     }
 
+    static boolean palindromeLinkedList(String word){
+        System.out.println("LinkedList");
+        LinkedList<Character> linkedList = new LinkedList<>();
+        for(int i = 0; i < word.length(); i++){
+            linkedList.add(word.charAt(i));
+        }
+
+        while(linkedList.size() > 1){
+            if(linkedList.removeFirst() != linkedList.removeLast()){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args){
 
         double version = 2.0;
         System.out.println("Welcome to the Palindrome Checker Management System ");
         System.out.println("Version : " + version);
         System.out.println("System initialized successfully.");
-        boolean status = palindromeDeque("mada");
+        boolean status = palindromeLinkedList("madam");
         if (status){
             System.out.println("Palindrome");
 
