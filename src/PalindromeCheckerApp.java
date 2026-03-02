@@ -21,7 +21,7 @@ public class PalindromeCheckerApp {
     }
 
     static boolean palindromeArr(String word){
-
+        System.out.println("arr");
         int start = 0;
         int end = word.length() - 1;
 
