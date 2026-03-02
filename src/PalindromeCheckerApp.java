@@ -36,6 +36,7 @@ public class PalindromeCheckerApp {
     }
 
     static boolean palindromeStack(String word){
+        System.out.println("Stack");
         Stack<Character> stack = new Stack<>();
 
         for (int i = 0; i < word.length(); i++) {
