@@ -101,13 +101,28 @@ public class PalindromeCheckerApp {
         return true;
     }
 
+    static boolean PalindromeRecur(String word, int start, int end ){
+        System.out.println("recur");
+
+        if (start >= end){
+            return true;
+        }
+
+        if(word.charAt(start) != word.charAt(end)){
+            return false;
+        }
+
+        return PalindromeRecur(word, start+1, end-1);  // ✅ FIXED
+    }
+
     public static void main(String[] args){
 
         double version = 2.0;
         System.out.println("Welcome to the Palindrome Checker Management System ");
         System.out.println("Version : " + version);
         System.out.println("System initialized successfully.");
-        boolean status = palindromeLinkedList("madam");
+        String word = "mada";
+        boolean status = PalindromeRecur(word, 0, word.length() - 1 );
         if (status){
             System.out.println("Palindrome");
 
