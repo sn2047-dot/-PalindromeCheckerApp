@@ -1,5 +1,6 @@
 import java.util.Stack;
-
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class PalindromeCheckerApp {
 
@@ -50,13 +51,31 @@ public class PalindromeCheckerApp {
         return true;
     }
 
+    static boolean palindromeQueueStack(String word){
+        System.out.println("QueueStack");
+        Queue<Character> queue = new LinkedList<>();
+        Stack<Character> stack = new Stack<>();
+
+        for (int i=0; i < word.length(); i++){
+            stack.push(word.charAt(i));
+            queue.add(word.charAt(i));
+        }
+
+        for (int i=0; i < word.length(); i++){
+            if(queue.remove() != stack.pop()){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args){
 
         double version = 2.0;
         System.out.println("Welcome to the Palindrome Checker Management System");
         System.out.println("Version : " + version);
         System.out.println("System initialized successfully.");
-        boolean status = palindromeArr("madam");
+        boolean status = palindromeQueueStack("madam");
         if (status){
             System.out.println("Palindrome");
 
