@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class UseCase13PalindromeCheckerApp {
+public class PalindromeCheckerApp {
 
     static boolean palindromeArray(String word){
         int start = 0;
