@@ -1,8 +1,4 @@
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
-import java.util.Deque;
-import java.util.ArrayDeque;
+import java.util.*;
 
 public class PalindromeCheckerApp {
 
@@ -86,21 +82,58 @@ public class PalindromeCheckerApp {
         return true;
     }
 
-    public static void main(String[] args){
+    static boolean palindromeLinkedList(String word){
+        System.out.println("LinkedList");
+        LinkedList<Character> linkedList = new LinkedList<>();
+        for(int i = 0; i < word.length(); i++){
+            linkedList.add(word.charAt(i));
+        }
 
-        double version = 2.0;
-        System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : " + version);
-        System.out.println("System initialized successfully.");
-        boolean status = palindromeDeque("mada");
-        if (status){
+        while(linkedList.size() > 1){
+            if(linkedList.removeFirst() != linkedList.removeLast()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static boolean PalindromeRecur(String word, int start, int end ){
+        System.out.println("recur");
+
+        if (start >= end){
+            return true;
+        }
+
+        if(word.charAt(start) != word.charAt(end)){
+            return false;
+        }
+
+        return PalindromeRecur(word, start+1, end-1);
+    }
+
+}
+class UseCase11PalindromeCheckerApp {
+
+    public static void main(String[] args) {
+
+        System.out.println("Palindrome Checker App");
+
+        String word = "m a d a M";
+
+        word = word.toLowerCase();
+        word = word.replace(" ", "");
+
+        PalindromeCheckerApp checker = new PalindromeCheckerApp();
+
+        boolean status = checker.palindromeArr(word);
+
+        if(status){
             System.out.println("Palindrome");
-
         }
         else{
-            System.out.println("not");
-
+            System.out.println("Not Palindrome");
         }
+
     }
 
 }
