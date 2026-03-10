@@ -1,139 +1,70 @@
 import java.util.*;
 
-public class PalindromeCheckerApp {
+interface PalindromeStrategy {
+    boolean checkPalindrome(String word);
+}
 
-    static boolean palindrome(String word){
+class StackStrategy implements PalindromeStrategy {
 
-        String rev_word = "";
-        for(int i = word.length() - 1; i >= 0; i--){
-            rev_word += word.charAt(i);
-        }
+    public boolean checkPalindrome(String word) {
 
-        if (word.equals(rev_word)){
-            return true;
-        }
-
-        else{
-            return false;
-        }
-    }
-
-    static boolean palindromeArr(String word){
-
-        int start = 0;
-        int end = word.length() - 1;
-
-        while(end >= start){
-            if(word.charAt(start) != word.charAt(end)){
-                return false;
-            }
-            start++;
-            end--;
-        }
-        return true;
-    }
-
-    static boolean palindromeStack(String word){
         Stack<Character> stack = new Stack<>();
 
         for (int i = 0; i < word.length(); i++) {
             stack.push(word.charAt(i));
         }
-
 
         for (int i = 0; i < word.length(); i++) {
             if (word.charAt(i) != stack.pop()) {
                 return false;
             }
         }
+
         return true;
     }
+}
 
-    static boolean palindromeQueueStack(String word){
-        System.out.println("QueueStack");
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+class DequeStrategy implements PalindromeStrategy {
 
-        for (int i=0; i < word.length(); i++){
-            stack.push(word.charAt(i));
-            queue.add(word.charAt(i));
-        }
+    public boolean checkPalindrome(String word) {
 
-        for (int i=0; i < word.length(); i++){
-            if(queue.remove() != stack.pop()){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    static boolean palindromeDeque(String word){
-        System.out.println("deque");
         Deque<Character> deque = new ArrayDeque<>();
-        for(int i = 0; i < word.length(); i++){
+
+        for (int i = 0; i < word.length(); i++) {
             deque.addLast(word.charAt(i));
         }
 
-        while(deque.size() > 1){
-            if(deque.removeFirst() != deque.removeLast()){
+        while (deque.size() > 1) {
+            if (deque.removeFirst() != deque.removeLast()) {
                 return false;
             }
         }
+
         return true;
     }
-
-    static boolean palindromeLinkedList(String word){
-        System.out.println("LinkedList");
-        LinkedList<Character> linkedList = new LinkedList<>();
-        for(int i = 0; i < word.length(); i++){
-            linkedList.add(word.charAt(i));
-        }
-
-        while(linkedList.size() > 1){
-            if(linkedList.removeFirst() != linkedList.removeLast()){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    static boolean PalindromeRecur(String word, int start, int end ){
-        System.out.println("recur");
-
-        if (start >= end){
-            return true;
-        }
-
-        if(word.charAt(start) != word.charAt(end)){
-            return false;
-        }
-
-        return PalindromeRecur(word, start+1, end-1);
-    }
-
 }
-class UseCase11PalindromeCheckerApp {
+
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         System.out.println("Palindrome Checker App");
 
-        String word = "m a d a M";
+        String word = "M a d a M";
 
         word = word.toLowerCase();
         word = word.replace(" ", "");
 
-        PalindromeCheckerApp checker = new PalindromeCheckerApp();
+        PalindromeStrategy strategy;
 
-        boolean status = checker.palindromeArr(word);
+        strategy = new StackStrategy();
 
-        if(status){
+        boolean result = strategy.checkPalindrome(word);
+
+        if (result) {
             System.out.println("Palindrome");
-        }
-        else{
+        } else {
             System.out.println("Not Palindrome");
         }
-
     }
-
 }
