@@ -111,27 +111,29 @@ public class PalindromeCheckerApp {
         return PalindromeRecur(word, start+1, end-1);
     }
 
+}
+class UseCase11PalindromeCheckerApp {
 
+    public static void main(String[] args) {
 
-    public static void main(String[] args){
+        System.out.println("Palindrome Checker App");
 
-        double version = 2.0;
-        System.out.println("Welcome to the Palindrome Checker Management System ");
-        System.out.println("Version : " + version);
-        System.out.println("System initialized successfully.");
         String word = "m a d a M";
+
         word = word.toLowerCase();
         word = word.replace(" ", "");
 
-        boolean status = PalindromeRecur(word, 0, word.length() - 1 );
-        if (status){
-            System.out.println("Palindrome");
+        PalindromeCheckerApp checker = new PalindromeCheckerApp();
 
+        boolean status = checker.palindromeArr(word);
+
+        if(status){
+            System.out.println("Palindrome");
         }
         else{
-            System.out.println("not");
-
+            System.out.println("Not Palindrome");
         }
+
     }
 
 }
